@@ -29,11 +29,20 @@ def login_required(f):
 @login_required
 def home():
     # return "Hello, World!"  # return a string
-    g.db = connect_db()
-    cur = g.db.execute('select * from posts')
-    posts = [dict(title=row[0], description=row[1]) for row in cur.fetchall()]
-    print(posts)
-    g.db.close()
+    posts = []
+    try:
+        g.db = connect_db()
+        cur = g.db.execute('select * from posts')
+
+        for row in cur.fetchall():
+            posts.append(dict(title=row[0], description=row[1]))
+
+        # posts = [dict(title=row[0],
+            # description=row[1]) for row in cur.fetchall()]
+
+        g.db.close()
+    except sqlite3.OperationalError:
+        flash('Missing the DB!')
     return render_template('index.html', posts=posts)  # render a template
 
 
@@ -63,6 +72,7 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out.')
     return redirect(url_for('welcome'))
+
 
 # connect to database
 def connect_db():
