@@ -24,7 +24,7 @@ class FlaskTestCase(unittest.TestCase):
             data=dict(username="admin", password="admin"),
             follow_redirects=True
         )
-        self.assertIn(b'You were logged in', response.data)
+        self.assertIn(b'You were logged in.', response.data)
 
     # Ensure login behaves correctly with incorrect credentials
     def test_incorrect_login(self):
@@ -67,7 +67,7 @@ class FlaskTestCase(unittest.TestCase):
             data=dict(username="admin", password="admin"),
             follow_redirects=True
         )
-        self.assertIn(b'Hello from the shell', response.data)
+        self.assertIn(b'I\'m well.', response.data)
 
 
 if __name__ == '__main__':
