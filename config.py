@@ -10,6 +10,12 @@ class BaseConfig(object):
 	print(SQLALCHEMY_DATABASE_URI)
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+class TestConfig(BaseConfig):
+    DEBUG = True
+    TESTING = True
+    WTF_CSRF_ENABLED = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+
 class DevelopmentConfig(BaseConfig):
 	DEBUG = True
 
