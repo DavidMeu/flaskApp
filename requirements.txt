@@ -22,7 +22,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.1
 Mako==1.1.0
 MarkupSafe==1.1.1
-numpy==1.16.5
+numpy==1.22.0
 passlib==1.7.1
 pbr==5.4.2
 psycopg2==2.8.3
